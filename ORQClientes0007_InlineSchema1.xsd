@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://bpichincha.com/servicios"
+	xmlns:bp="http://bpichincha.com/servicios"
+	xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+	<xsd:include schemaLocation="../GenericSoapORQ.xsd"/>
+	<xsd:element ibmSchExtn:docRoot="true"
+		name="ActualizarCupoCuentaTransaccion31">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element maxOccurs="1" minOccurs="1" name="headerIn"
+					type="bp:GenericHeaderIn" />
+				<xsd:element maxOccurs="1" minOccurs="1" name="bodyIn"
+					type="bp:bodyIn" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element ibmSchExtn:docRoot="true"
+		name="ActualizarCupoCuentaTransaccion31Response">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element maxOccurs="1" minOccurs="1"
+					name="headerOut" type="bp:GenericHeaderIn" />
+				<xsd:element maxOccurs="1" minOccurs="1" name="bodyOut"
+					type="bp:bodyOut" />
+				<xsd:element maxOccurs="1" minOccurs="1" name="error"
+					type="bp:GenericError" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:complexType name="Ordenante">
+		<xsd:sequence>
+			<xsd:element name="cif" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+			<xsd:element name="identificacion" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+			<xsd:element name="tipoIdentificacion" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="Transacciones">
+		<xsd:sequence>
+			<xsd:element name="transaccion" type="bp:Transaccion" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="Transaccion">
+		<xsd:sequence>
+			<xsd:element name="canal" type="xsd:string" maxOccurs="1"
+				minOccurs="1">
+			</xsd:element>
+			<xsd:element name="medio" type="xsd:string" maxOccurs="1"
+				minOccurs="1">
+			</xsd:element>
+            <xsd:element name="aplicacion" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+            <xsd:element name="monto" type="xsd:string" maxOccurs="1"
+				minOccurs="1">
+			</xsd:element>
+			<xsd:element name="activar" type="xsd:boolean" maxOccurs="1"
+				minOccurs="1">
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+    <xsd:complexType name="bodyIn">
+    	<xsd:sequence>
+    		<xsd:element name="ordenante" type="bp:Ordenante"
+    			maxOccurs="1" minOccurs="1">
+    		</xsd:element>
+    		<xsd:element name="transacciones" type="bp:Transacciones"
+    			maxOccurs="1" minOccurs="1">
+    		</xsd:element>
+    		<xsd:element name="flujo" type="bp:GenericFlow" maxOccurs="1" minOccurs="1"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+
+
+    <xsd:complexType name="bodyOut">
+    	<xsd:sequence>
+    		<xsd:element name="flujo" type="bp:GenericFlow" maxOccurs="1" minOccurs="1"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>
